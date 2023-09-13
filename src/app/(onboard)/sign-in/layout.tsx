@@ -8,10 +8,14 @@ export const metadata: Metadata = {
   description: 'Login',
 };
 
-export default function ComponentsLayout({
+export default function OnBoardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <main className='layout'>{children}</main>;
+  return (
+    <section className='bg-grayf7 flex h-screen items-center justify-center'>
+      {children}
+    </section>
+  );
 }

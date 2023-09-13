@@ -5,8 +5,6 @@ import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 
-import { SideBar, TopBar } from '@/components/common';
-
 import { siteConfig } from '@/constant/config';
 
 // !STARTERCONF Change these default meta
@@ -57,13 +55,7 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>
-        <TopBar />
-        <div className='relative grid min-h-screen grid-cols-[250px_minmax(0,1fr)]'>
-          <SideBar />
-          <main className='bg-grayf4 px-6 py-7'>{children}</main>
-        </div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
