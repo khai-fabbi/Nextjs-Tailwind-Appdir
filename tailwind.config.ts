@@ -25,7 +25,7 @@ export default {
           DEFAULT: '#475BE8',
         },
         primaryText: '#11142D',
-        secondary: '#2ED480',
+        secondary: '#DADEFA',
         dark: '#222222',
         grayf4: '#F4F4F4',
         grayf7: '#F7F7F7',
