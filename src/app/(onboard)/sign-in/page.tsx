@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { twMerge } from 'tailwind-merge';
 
 import { LoginUserSchema } from '@/lib/validations/user.schema';
@@ -13,16 +14,24 @@ import Button from '@/components/buttons/Button';
 import { Loading } from '@/components/common';
 import PrimaryLink from '@/components/links/PrimaryLink';
 
+import authApi from '@/app/api/auth';
+
 interface SignUpFormValue {
   email: string;
   password: string;
 }
 export default function SignIn() {
   const router = useRouter();
-  const handleSignIn = (formValue: SignUpFormValue) => {
+  const handleSignIn = async (formValue: SignUpFormValue) => {
     console.log(formValue); // eslint-disable-line no-console
+    try {
+      const response = await authApi.signIn(formValue);
+      toast.success('Login successfully!');
 
-    router.push('/');
+      router.push('/');
+    } catch (error) {
+      toast.error('error');
+    }
   };
 
   const {

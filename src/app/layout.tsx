@@ -1,9 +1,11 @@
 import { Metadata } from 'next';
 import * as React from 'react';
+import { ToastContainer } from 'react-toastify';
 
 import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { siteConfig } from '@/constant/config';
 
@@ -55,7 +57,21 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ToastContainer
+          position='top-center'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme='colored'
+        />
+      </body>
     </html>
   );
 }
