@@ -25,7 +25,7 @@ export const SIDE_BAR_LIST = [
   },
   {
     title: 'Review',
-    href: '/review',
+    href: '/learn-react',
     icon: <StarIcon />,
   },
   {

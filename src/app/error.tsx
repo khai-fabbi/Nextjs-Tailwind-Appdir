@@ -1,21 +1,21 @@
-'use client'; // Error components must be Client Components
+'use client' // Error components must be Client Components
 
-import * as React from 'react';
-import { RiAlarmWarningFill } from 'react-icons/ri';
+import * as React from 'react'
+import { RiAlarmWarningFill } from 'react-icons/ri'
 
-import TextButton from '@/components/buttons/TextButton';
+import TextButton from '@/components/buttons/TextButton'
 
 export default function Error({
   error,
   reset,
 }: {
-  error: Error & { digest?: string };
-  reset: () => void;
+  error: Error & { digest?: string }
+  reset: () => void
 }) {
   React.useEffect(() => {
     // eslint-disable-next-line no-console
-    console.error(error);
-  }, [error]);
+    console.error(error)
+  }, [error])
 
   return (
     <main>
@@ -34,5 +34,5 @@ export default function Error({
         </div>
       </section>
     </main>
-  );
+  )
 }

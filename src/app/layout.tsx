@@ -1,13 +1,13 @@
-import { Metadata } from 'next';
-import * as React from 'react';
-import { ToastContainer } from 'react-toastify';
+import { Metadata } from 'next'
+import * as React from 'react'
 
-import '@/styles/globals.css';
+import '@/styles/globals.css'
+
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
-import '@/styles/colors.css';
-import 'react-toastify/dist/ReactToastify.css';
+// import '@/styles/colors.css';
+import Providers from '@/lib/provider'
 
-import { siteConfig } from '@/constant/config';
+import { siteConfig } from '@/constant/config'
 
 // !STARTERCONF Change these default meta
 // !STARTERCONF Look at @/constant/config to change them
@@ -48,30 +48,33 @@ export const metadata: Metadata = {
   //     url: 'https://theodorusclarence.com',
   //   },
   // ],
-};
+}
+
+import { Inter } from 'next/font/google'
+
+import { cn } from '@/lib/utils'
+
+import { Toaster } from '@/components/ui/toaster'
+
+const interFont = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-inter',
+})
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html>
-      <body>
-        {children}
-        <ToastContainer
-          position='top-center'
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme='colored'
-        />
+    <html lang='en' suppressHydrationWarning>
+      <body className={cn(interFont.variable)}>
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
-  );
+  )
 }

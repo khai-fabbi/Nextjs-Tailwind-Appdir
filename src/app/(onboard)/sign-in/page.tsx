@@ -1,38 +1,47 @@
-'use client';
+'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import * as React from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { twMerge } from 'tailwind-merge';
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
 
-import { LoginUserSchema } from '@/lib/validations/user.schema';
+import { LoginUserSchema } from '@/lib/validations/user.schema'
 
-import Button from '@/components/buttons/Button';
-import { Loading } from '@/components/common';
-import PrimaryLink from '@/components/links/PrimaryLink';
+import Button from '@/components/buttons/Button'
+import { Loading } from '@/components/common'
+import PrimaryLink from '@/components/links/PrimaryLink'
+import { useToast } from '@/components/ui/use-toast'
 
-import authApi from '@/app/api/auth';
+import authApi from '@/app/api/auth'
 
 interface SignUpFormValue {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 export default function SignIn() {
-  const router = useRouter();
-  const handleSignIn = async (formValue: SignUpFormValue) => {
-    console.log(formValue); // eslint-disable-line no-console
-    try {
-      const response = await authApi.signIn(formValue);
-      toast.success('Login successfully!');
+  const router = useRouter()
+  const { toast } = useToast()
 
-      router.push('/');
-    } catch (error) {
-      toast.error('error');
-    }
-  };
+  const loginMutation = useMutation({
+    mutationFn: authApi.signIn,
+    onSuccess: () => {
+      toast({
+        title: 'Success',
+        description: 'You have successfully logged in',
+        duration: 3000,
+      })
+      router.push('/')
+    },
+    onError: (error) => {
+      // toast.error('error');
+    },
+  })
+  const handleSignIn = async (formValue: SignUpFormValue) => {
+    console.log(formValue) // eslint-disable-line no-console
+    loginMutation.mutate(formValue)
+  }
 
   const {
     register,
@@ -40,7 +49,7 @@ export default function SignIn() {
     formState: { errors, isSubmitting },
   } = useForm<SignUpFormValue>({
     resolver: zodResolver(LoginUserSchema),
-  });
+  })
 
   return (
     <form
@@ -130,5 +139,5 @@ export default function SignIn() {
         Don’t have an account? <PrimaryLink href='/'>Sign up</PrimaryLink>
       </p>
     </form>
-  );
+  )
 }

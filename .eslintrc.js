@@ -23,6 +23,7 @@ module.exports = {
       'warn',
       { props: 'never', children: 'never' },
     ],
+    '@typescript-eslint/no-empty-interface': 'off',
 
     //#region  //*=========== Unused Import ===========
     '@typescript-eslint/no-unused-vars': 'off',
@@ -81,4 +82,4 @@ module.exports = {
     React: true,
     JSX: true,
   },
-};
+}

@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import clsx from 'clsx';
+import clsx from 'clsx'
 import {
   ArrowRight,
   CreditCard,
@@ -8,19 +8,19 @@ import {
   Phone,
   Plus,
   Shield,
-} from 'lucide-react';
-import React from 'react';
+} from 'lucide-react'
+import React from 'react'
 
-import Button from '@/components/buttons/Button';
-import IconButton from '@/components/buttons/IconButton';
-import TextButton from '@/components/buttons/TextButton';
-import ArrowLink from '@/components/links/ArrowLink';
-import ButtonLink from '@/components/links/ButtonLink';
-import PrimaryLink from '@/components/links/PrimaryLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
-import UnstyledLink from '@/components/links/UnstyledLink';
-import NextImage from '@/components/NextImage';
-import Skeleton from '@/components/Skeleton';
+import Button from '@/components/buttons/Button'
+import IconButton from '@/components/buttons/IconButton'
+import TextButton from '@/components/buttons/TextButton'
+import ArrowLink from '@/components/links/ArrowLink'
+import ButtonLink from '@/components/links/ButtonLink'
+import PrimaryLink from '@/components/links/PrimaryLink'
+import UnderlineLink from '@/components/links/UnderlineLink'
+import UnstyledLink from '@/components/links/UnstyledLink'
+import NextImage from '@/components/NextImage'
+import Skeleton from '@/components/Skeleton'
 
 const colorList = [
   'slate',
@@ -45,29 +45,24 @@ const colorList = [
   'fuchsia',
   'pink',
   'rose',
-] as const;
-type Color = (typeof colorList)[number];
+] as const
+type Color = (typeof colorList)[number]
 
 export default function ComponentPage() {
-  const [mode, setMode] = React.useState<'dark' | 'light'>('light');
-  const [color, setColor] = React.useState<Color>('sky');
+  const [mode, setMode] = React.useState<'dark' | 'light'>('light')
+  const [color, setColor] = React.useState<Color>('sky')
   function toggleMode() {
-    return mode === 'dark' ? setMode('light') : setMode('dark');
+    return mode === 'dark' ? setMode('light') : setMode('dark')
   }
 
-  const textColor = mode === 'dark' ? 'text-gray-300' : 'text-gray-600';
+  const textColor = mode === 'dark' ? 'text-gray-300' : 'text-gray-600'
 
   return (
     <main>
       <section
         className={clsx(mode === 'dark' ? 'bg-dark' : 'bg-white', color)}
       >
-        <div
-          className={clsx(
-            'layout min-h-screen py-20',
-            mode === 'dark' ? 'text-white' : 'text-black'
-          )}
-        >
+        <div className={clsx('layout min-h-screen py-10')}>
           <h1>Built-in Components</h1>
           <ArrowLink direction='left' className='mt-2' href='/'>
             Back to Home
@@ -456,5 +451,5 @@ export default function ComponentPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

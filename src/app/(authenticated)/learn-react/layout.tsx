@@ -2,11 +2,11 @@ import { Metadata } from 'next';
 import * as React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Components',
-  description: 'Pre-built components with awesome default',
+  title: 'Learning',
+  description: 'Learning',
 };
 
-export default function ComponentsLayout({
+export default function LearnReactLayout({
   children,
 }: {
   children: React.ReactNode;
