@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
@@ -22,16 +23,20 @@ interface SignUpFormValue {
 }
 export default function SignIn() {
   const router = useRouter();
+
+  const loginMutation = useMutation({
+    mutationFn: authApi.signIn,
+    onSuccess: () => {
+      toast.success('Login successfully!');
+      router.push('/');
+    },
+    onError: (error) => {
+      toast.error('error');
+    },
+  });
   const handleSignIn = async (formValue: SignUpFormValue) => {
     console.log(formValue); // eslint-disable-line no-console
-    try {
-      const response = await authApi.signIn(formValue);
-      toast.success('Login successfully!');
-
-      router.push('/');
-    } catch (error) {
-      toast.error('error');
-    }
+    loginMutation.mutate(formValue);
   };
 
   const {
